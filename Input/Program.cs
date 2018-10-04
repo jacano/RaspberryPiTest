@@ -1,12 +1,7 @@
-﻿using Avalonia;
-using Avalonia.Input;
-using Avalonia.Input.Raw;
+﻿using Avalonia.Input.Raw;
 using Avalonia.LinuxFramebuffer;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Input
 {
@@ -16,8 +11,6 @@ namespace Input
         private static double _height;
         private static double _x;
         private static double _y;
-
-        //public static event Action<RawInputEventArgs> Event;
 
         static void Main()
         {
@@ -62,18 +55,6 @@ namespace Input
 
         private static void ProcessEvent(EvDevDevice device, input_event ev)
         {
-            if (ev.type == (short)EvType.EV_REL)
-            {
-                if (ev.code == (short)AxisEventCode.REL_X)
-                    _x = Math.Min(_width, Math.Max(0, _x + ev.value));
-                else if (ev.code == (short)AxisEventCode.REL_Y)
-                    _y = Math.Min(_height, Math.Max(0, _y + ev.value));
-                else
-                    return;
-                //Event?.Invoke(new RawMouseEventArgs(null,
-                //    0, RawMouseEventType.Move, new Point(_x, _y),
-                //    InputModifiers.None));
-            }
             if (ev.type == (int)EvType.EV_ABS)
             {
                 if (ev.code == (short)AbsAxis.ABS_X && device.AbsX.HasValue)
@@ -85,6 +66,8 @@ namespace Input
                 //Event?.Invoke(new RawMouseEventArgs(null,
                 //    0, RawMouseEventType.Move, new Point(_x, _y),
                 //    InputModifiers.None));
+
+                Console.WriteLine($"x->{_x} y->{_y}");
             }
             if (ev.type == (short)EvType.EV_KEY)
             {
@@ -98,10 +81,12 @@ namespace Input
                 if (!type.HasValue)
                     return;
 
+                Console.WriteLine($"type->{type}");
+
                 //Event?.Invoke(new RawMouseEventArgs(null, 0, type.Value, new Point(_x, _y), default(InputModifiers)));
             }
 
-            Console.WriteLine($"x ->{_x} y ->{_y}");
+
         }
     }
 }
