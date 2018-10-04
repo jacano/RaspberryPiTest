@@ -43,7 +43,6 @@
     <Compile Include="EvDevDevice.cs" />
     <Compile Include="IInputDevice.cs" />
     <Compile Include="InputModifiers.cs" />
-    <Compile Include="Mice.cs" />
     <Compile Include="NativeUnsafeMethods.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />

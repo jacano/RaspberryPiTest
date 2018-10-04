@@ -16,9 +16,9 @@ namespace Avalonia.LinuxFramebuffer
             var rv = new List<EvDevDevice>();
             foreach (var dev in Directory.GetFiles("/dev/input", "event*").Select(Open))
             {
-                if (!dev.IsMouse)
-                    NativeUnsafeMethods.close(dev.Fd);
-                else
+                //if (!dev.IsMouse)
+                //    NativeUnsafeMethods.close(dev.Fd);
+                //else
                     rv.Add(dev);
             }
             return rv;
@@ -60,7 +60,7 @@ namespace Avalonia.LinuxFramebuffer
             return null;
         }
 
-        public bool IsMouse => EventTypes.Contains(EvType.EV_REL);
+        //public bool IsMouse => EventTypes.Contains(EvType.EV_REL);
 
         public static EvDevDevice Open(string device)
         {
@@ -78,11 +78,5 @@ namespace Avalonia.LinuxFramebuffer
         }
 
 
-    }
-
-    public class EvDevAxisInfo
-    {
-        public int Minimum { get; set; }
-        public int Maximum { get; set; }
     }
 }

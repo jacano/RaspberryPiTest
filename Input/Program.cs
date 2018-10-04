@@ -21,7 +21,7 @@ namespace Input
 
         static void Main()
         {
-            var mouseDevices = EvDevDevice.MouseDevices.Where(d => d.IsMouse).ToList();
+            var mouseDevices = EvDevDevice.MouseDevices.ToList();
             if (mouseDevices.Count == 0)
                 return;
 
