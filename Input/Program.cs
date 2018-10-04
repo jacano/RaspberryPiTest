@@ -1,7 +1,12 @@
-﻿using Avalonia.Input.Raw;
+﻿using Avalonia;
+using Avalonia.Input;
+using Avalonia.Input.Raw;
 using Avalonia.LinuxFramebuffer;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Input
 {
@@ -55,7 +60,17 @@ namespace Input
 
         private static void ProcessEvent(EvDevDevice device, input_event ev)
         {
-            if (ev.type == (int)EvType.EV_ABS)
+            if (ev.type == (short)EvType.EV_REL)
+            {
+                if (ev.code == (short)AxisEventCode.REL_X)
+                    _x = Math.Min(_width, Math.Max(0, _x + ev.value));
+                else if (ev.code == (short)AxisEventCode.REL_Y)
+                    _y = Math.Min(_height, Math.Max(0, _y + ev.value));
+                else
+                    return;
+                Console.WriteLine($"relative x->{_x} y->{_y}");
+            }
+            else if (ev.type == (int)EvType.EV_ABS)
             {
                 if (ev.code == (short)AbsAxis.ABS_X && device.AbsX.HasValue)
                     _x = TranslateAxis(device.AbsX.Value, ev.value, _width);
@@ -63,13 +78,10 @@ namespace Input
                     _y = TranslateAxis(device.AbsY.Value, ev.value, _height);
                 else
                     return;
-                //Event?.Invoke(new RawMouseEventArgs(null,
-                //    0, RawMouseEventType.Move, new Point(_x, _y),
-                //    InputModifiers.None));
 
-                Console.WriteLine($"x->{_x} y->{_y}");
+                Console.WriteLine($"absolute x->{_x} y->{_y}");
             }
-            if (ev.type == (short)EvType.EV_KEY)
+            else if (ev.type == (short)EvType.EV_KEY)
             {
                 RawMouseEventType? type = null;
                 if (ev.code == (ushort)EvKey.BTN_LEFT)
@@ -81,11 +93,12 @@ namespace Input
                 if (!type.HasValue)
                     return;
 
-                Console.WriteLine($"type->{type}");
-
-                //Event?.Invoke(new RawMouseEventArgs(null, 0, type.Value, new Point(_x, _y), default(InputModifiers)));
+                Console.WriteLine($"key button->{type}");
             }
-
+            else
+            {
+                Console.WriteLine($"other type->{(EvType)ev.type} code->{ev.code} value->{ev.value}");
+            }
 
         }
     }
