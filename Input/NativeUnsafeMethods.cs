@@ -96,6 +96,21 @@ namespace Avalonia.LinuxFramebuffer
         ABS_TOOL_WIDTH = 0x1c
     }
 
+    public enum RawMouseEventType
+    {
+        LeaveWindow,
+        LeftButtonDown,
+        LeftButtonUp,
+        RightButtonDown,
+        RightButtonUp,
+        MiddleButtonDown,
+        MiddleButtonUp,
+        Move,
+        Wheel,
+        NonClientLeftButtonDown,
+    }
+
+
     enum EvKey
     {
         BTN_LEFT = 0x110,

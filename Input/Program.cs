@@ -1,12 +1,6 @@
-﻿using Avalonia;
-using Avalonia.Input;
-using Avalonia.Input.Raw;
-using Avalonia.LinuxFramebuffer;
+﻿using Avalonia.LinuxFramebuffer;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Input
 {
