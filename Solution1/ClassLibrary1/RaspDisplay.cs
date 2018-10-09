@@ -32,20 +32,16 @@ public class RaspDisplay : Display
 
             handler = nativeWindow.Display;
 
-            //var eglContext = DeviceContext.Create(nativeWindow.Display, nativeWindow.Handle);
+            var eglContext = DeviceContext.Create(nativeWindow.Display, nativeWindow.Handle);
 
-            //eglContext.ChoosePixelFormat(new DevicePixelFormat(32));
+            eglContext.ChoosePixelFormat(new DevicePixelFormat(32));
 
-            //IntPtr glContext = eglContext.CreateContext(IntPtr.Zero);
+            IntPtr glContext = eglContext.CreateContext(IntPtr.Zero);
 
-            //eglContext.MakeCurrent(glContext);
-
-
+            eglContext.MakeCurrent(glContext);
 
 
             //eglContext.DeleteContext(glContext);
-
-
         }
         catch (Exception exception)
         {
