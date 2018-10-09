@@ -30,7 +30,7 @@ public class RaspDisplay : Display
             //TODO
             var nativeWindow = new VideoCoreWindow();
 
-            handler = nativeWindow.Handle;
+            handler = nativeWindow.Display;
 
             //var eglContext = DeviceContext.Create(nativeWindow.Display, nativeWindow.Handle);
 
