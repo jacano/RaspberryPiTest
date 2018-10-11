@@ -1,5 +1,4 @@
 ﻿using System;
-using Khronos;
 using NoesisApp;
 using OpenGL;
 
