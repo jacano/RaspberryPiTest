@@ -41,6 +41,8 @@ public class RaspDisplay : Display
 
 
             //eglContext.DeleteContext(glContext);
+
+            Console.WriteLine("nativeWindow created");
         }
         catch (Exception exception)
         {

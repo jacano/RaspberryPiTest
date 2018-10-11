@@ -82,11 +82,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="libNoesis.so">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

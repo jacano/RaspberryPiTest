@@ -170,7 +170,7 @@ public class Application
         {
             string[] prefixes = new string[] { "T", "D", "I", "W", "E" };
             string prefix = (int)level < prefixes.Length ? prefixes[(int)level] : " ";
-            System.Diagnostics.Debug.WriteLine("[NOESIS/" + prefix + "] " + message);
+            Console.WriteLine("[NOESIS/" + prefix + "] " + message);
         }
     }
 
