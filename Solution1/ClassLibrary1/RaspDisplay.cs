@@ -11,15 +11,15 @@ public class RaspDisplay : Display
     {
         try
         {
-            string envDebug = Environment.GetEnvironmentVariable("DEBUG");
-            if (envDebug == "GL")
-            {
-                Khronos.KhronosApi.Log += delegate (object sender, KhronosLogEventArgs e)
-                {
-                    Console.WriteLine(e.ToString());
-                };
-                Khronos.KhronosApi.LogEnabled = true;
-            }
+            //string envDebug = Environment.GetEnvironmentVariable("DEBUG");
+            //if (envDebug == "GL")
+            //{
+            //    Khronos.KhronosApi.Log += delegate (object sender, KhronosLogEventArgs e)
+            //    {
+            //        Console.WriteLine(e.ToString());
+            //    };
+            //    Khronos.KhronosApi.LogEnabled = true;
+            //}
 
             // RPi runs on EGL
             Egl.IsRequired = true;
@@ -30,7 +30,7 @@ public class RaspDisplay : Display
             //TODO
             var nativeWindow = new VideoCoreWindow();
 
-            handler = nativeWindow.Display;
+            handler = nativeWindow.Handle;
 
             //var eglContext = DeviceContext.Create(nativeWindow.Display, nativeWindow.Handle);
 

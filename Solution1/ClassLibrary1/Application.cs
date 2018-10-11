@@ -118,7 +118,9 @@ public class Application
         bool sRGB = GetsRGB();
 
         RenderContext renderContext = GetRenderContext();
+        Error.Check();
         renderContext.Init(Display.NativeHandle, samples, vsync, sRGB);
+        Error.Check();
         renderContext.Device.OffscreenSampleCount = samples;
 
         bool ppaa = GetPPAA();
